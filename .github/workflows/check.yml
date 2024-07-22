@@ -1,0 +1,22 @@
+on: [push, pull_request]
+
+name: Check
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        toolchain:
+        - stable
+        - beta
+        - nightly
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: ${{ matrix.toolchain }}
+      - run: cargo check
+      - run: cargo check --manifest-path fuzz/Cargo.toml
