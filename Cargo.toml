@@ -14,3 +14,6 @@ edition = "2021"
 bindgen = { version = "0.69.4", default-features = false, features = ["logging", "runtime"] }
 cc = "1.1.6"
 
+[dev-dependencies]
+shakmaty = "0.27.1"
+

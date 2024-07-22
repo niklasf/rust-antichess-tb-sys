@@ -1,5 +1,4 @@
-use std::env;
-use std::path::PathBuf;
+use std::{env, path::PathBuf};
 
 fn main() {
     let out_dir = PathBuf::from(env::var_os("OUT_DIR").unwrap());
@@ -17,6 +16,7 @@ fn main() {
         .unwrap();
 
     cc::Build::new()
+        .cpp(true)
         .std("c++17")
         .flag_if_supported("-Wno-unused-parameter")
         // src/tb
@@ -52,5 +52,11 @@ fn main() {
         .compile("libantichesstb.a");
 
     println!("cargo:root={}", out_dir.display());
-    println!("cargo:include={}", env::current_dir().unwrap().join("antichess-tb-api").display());
+    println!(
+        "cargo:include={}",
+        env::current_dir()
+            .unwrap()
+            .join("antichess-tb-api")
+            .display()
+    );
 }

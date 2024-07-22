@@ -1,6 +1,6 @@
-use std::ffi::c_int;
+use std::ffi::{c_char, c_int};
 
-use antichess_tb_sys::antichess_tb_init;
+use antichess_tb_sys::{antichess_tb_add_path, antichess_tb_init, antichess_tb_probe_dtw};
 
 struct Test {
     fen: &'static str,
@@ -14,7 +14,7 @@ fn test_reference() {
 
     let path = "an0";
     assert_eq!(
-        unsafe { antichess_tb_add_path(path.as_ptr(), path.len()) },
+        unsafe { antichess_tb_add_path(path.as_ptr() as *const c_char, path.len()) },
         0
     );
 
