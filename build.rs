@@ -1,4 +1,21 @@
+use std::env;
+use std::path::PathBuf;
+
 fn main() {
+    let out_dir = PathBuf::from(env::var_os("OUT_DIR").unwrap());
+
+    bindgen::builder()
+        .layout_tests(false)
+        .header("wrapper.h")
+        .clang_arg("-Iantichess-tb-api/src")
+        .allowlist_function("antichess_tb_init")
+        .allowlist_function("antichess_tb_add_path")
+        .allowlist_function("antichess_tb_probe_dtw")
+        .generate()
+        .unwrap()
+        .write_to_file(out_dir.join("bindings.rs"))
+        .unwrap();
+
     cc::Build::new()
         .std("c++17")
         .flag_if_supported("-Wno-unused-parameter")
@@ -32,5 +49,8 @@ fn main() {
         .file("antichess-tb-api/src/tb/egtb/tb_idx.cpp")
         // src
         .file("antichess-tb-api/src/antichess_tb_api.cpp")
-        .compile("libantichess-tb-api.a");
+        .compile("libantichesstb.a");
+
+    println!("cargo:root={}", out_dir.display());
+    println!("cargo:include={}", env::current_dir().unwrap().join("antichess-tb-api").display());
 }
