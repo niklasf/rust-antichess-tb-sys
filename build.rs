@@ -2,6 +2,13 @@ use std::{env, path::PathBuf};
 
 use tap::Pipe as _;
 
+fn has_target_feature(feature: &str) -> bool {
+    env::var("CARGO_CFG_TARGET_FEATURE")
+        .unwrap()
+        .split(',')
+        .any(|f| f == feature)
+}
+
 fn main() {
     let out_dir = PathBuf::from(env::var_os("OUT_DIR").unwrap());
 
@@ -62,6 +69,13 @@ fn main() {
         // src/tb
         .include("antichess-tb-api/src")
         .define("ANTI", None)
+        .pipe(|b| {
+            if has_target_feature("popcnt") {
+                b.define("USE_POPCNT", None)
+            } else {
+                b
+            }
+        })
         .file("antichess-tb-api/src/tb/benchmark.cpp")
         .file("antichess-tb-api/src/tb/bitbase.cpp")
         .file("antichess-tb-api/src/tb/bitboard.cpp")
