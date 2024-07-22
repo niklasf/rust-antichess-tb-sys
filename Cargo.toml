@@ -1,7 +1,7 @@
 [package]
 name = "antichess-tb-sys"
 version = "0.1.0" # remember to update html_root_url
-links = "antichess_tb_api"
+links = "antichess-tb-api"
 description = "Low level bindings for antichess-tb-api"
 repository = "https://github.com/niklasf/antichess-tb-sys"
 readme = "README.md"
@@ -11,4 +11,6 @@ keywords = ["chess", "antichess", "tablebase"]
 edition = "2021"
 
 [build-dependencies]
+bindgen = { version = "0.69.4", default-features = false, features = ["logging", "runtime"] }
+cc = "1.1.6"
 
