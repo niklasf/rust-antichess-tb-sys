@@ -17,8 +17,10 @@ fn main() {
 
     cc::Build::new()
         .std("gnu99")
+        .flag_if_supported("-Wno-sign-compare")
         .flag_if_supported("-Wno-discarded-qualifiers")
         .flag_if_supported("-Wno-unused-parameter")
+        .flag_if_supported("-Wno-unused-function")
         // src/tb/egtb/dictzip
         .define("HAVE_UNISTD_H", None) // TODO
         .define("HAVE_MMAP", None)
