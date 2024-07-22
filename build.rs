@@ -111,6 +111,7 @@ fn main() {
         env::current_dir()
             .unwrap()
             .join("antichess-tb-api")
+            .join("src")
             .display()
     );
 }
