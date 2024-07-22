@@ -1,5 +1,7 @@
 use std::{env, path::PathBuf};
 
+use tap::Pipe as _;
+
 fn main() {
     let out_dir = PathBuf::from(env::var_os("OUT_DIR").unwrap());
 
@@ -22,7 +24,13 @@ fn main() {
         .flag_if_supported("-Wno-unused-parameter")
         .flag_if_supported("-Wno-unused-function")
         // src/tb/egtb/dictzip
-        .define("HAVE_UNISTD_H", None) // TODO
+        .pipe(|b| {
+            if std::env::var_os("CARGO_CFG_UNIX").is_some() {
+                b.define("HAVE_UNISTD_H", None)
+            } else {
+                b
+            }
+        })
         .define("HAVE_MMAP", None)
         .include("antichess-tb-api/src/tb/egtb/dictzip")
         .file("antichess-tb-api/src/tb/egtb/dictzip/data.c")
