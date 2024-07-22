@@ -16,6 +16,36 @@ fn main() {
         .unwrap();
 
     cc::Build::new()
+        .std("gnu99")
+        .flag_if_supported("-Wno-discarded-qualifiers")
+        .flag_if_supported("-Wno-unused-parameter")
+        // src/tb/egtb/dictzip
+        .define("HAVE_UNISTD_H", None) // TODO
+        .define("HAVE_MMAP", None)
+        .include("antichess-tb-api/src/tb/egtb/dictzip")
+        .file("antichess-tb-api/src/tb/egtb/dictzip/data.c")
+        .file("antichess-tb-api/src/tb/egtb/dictzip/dictzip.c")
+        .file("antichess-tb-api/src/tb/egtb/dictzip/dz.c")
+        // src/tb/egtb/dictzip/zlib
+        .include("antichess-tb-api/src/tb/egtb/dictzip/zlib")
+        .file("antichess-tb-api/src/tb/egtb/dictzip/zlib/adler32.c")
+        .file("antichess-tb-api/src/tb/egtb/dictzip/zlib/compress.c")
+        .file("antichess-tb-api/src/tb/egtb/dictzip/zlib/crc32.c")
+        .file("antichess-tb-api/src/tb/egtb/dictzip/zlib/deflate.c")
+        .file("antichess-tb-api/src/tb/egtb/dictzip/zlib/gzclose.c")
+        .file("antichess-tb-api/src/tb/egtb/dictzip/zlib/gzlib.c")
+        .file("antichess-tb-api/src/tb/egtb/dictzip/zlib/gzread.c")
+        .file("antichess-tb-api/src/tb/egtb/dictzip/zlib/gzwrite.c")
+        .file("antichess-tb-api/src/tb/egtb/dictzip/zlib/infback.c")
+        .file("antichess-tb-api/src/tb/egtb/dictzip/zlib/inffast.c")
+        .file("antichess-tb-api/src/tb/egtb/dictzip/zlib/inflate.c")
+        .file("antichess-tb-api/src/tb/egtb/dictzip/zlib/inftrees.c")
+        .file("antichess-tb-api/src/tb/egtb/dictzip/zlib/trees.c")
+        .file("antichess-tb-api/src/tb/egtb/dictzip/zlib/uncompr.c")
+        .file("antichess-tb-api/src/tb/egtb/dictzip/zlib/zutil.c")
+        .compile("dictzip");
+
+    cc::Build::new()
         .cpp(true)
         .std("c++17")
         .flag_if_supported("-Wno-unused-parameter")
@@ -49,7 +79,7 @@ fn main() {
         .file("antichess-tb-api/src/tb/egtb/tb_idx.cpp")
         // src
         .file("antichess-tb-api/src/antichess_tb_api.cpp")
-        .compile("libantichesstb.a");
+        .compile("antichesstb");
 
     println!("cargo:root={}", out_dir.display());
     println!(
