@@ -1,0 +1,14 @@
+[package]
+name = "antichess-tb-sys"
+version = "0.1.0" # remember to update html_root_url
+links = "antichess_tb_api"
+description = "Low level bindings for antichess-tb-api"
+repository = "https://github.com/niklasf/antichess-tb-sys"
+readme = "README.md"
+license = "GPL-3.0+ and GPL-2.0 and MIT and Zlib"
+categories = ["external-ffi-bindings", "games"]
+keywords = ["chess", "antichess", "tablebase"]
+edition = "2021"
+
+[build-dependencies]
+

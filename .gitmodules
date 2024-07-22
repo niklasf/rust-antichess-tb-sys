@@ -1,0 +1,3 @@
+[submodule "antichess-tb-api"]
+	path = antichess-tb-api
+	url = https://github.com/tolius/antichess-tb-api.git
