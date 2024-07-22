@@ -89,7 +89,7 @@ fuzz_target!(|pos: Pos| {
     INIT.call_once(|| {
         assert_eq!(unsafe { antichess_tb_init() }, 0, "init");
 
-        let path = "a0";
+        let path = "an0";
         assert_eq!(
             unsafe { antichess_tb_add_path(path.as_ptr() as *const c_char, path.len()) },
             0,
