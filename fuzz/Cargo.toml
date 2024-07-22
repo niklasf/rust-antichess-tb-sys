@@ -1,0 +1,21 @@
+[package]
+name = "antichess-tb-sys-fuzz"
+publish = false
+edition = "2021"
+
+[package.metadata]
+cargo-fuzz = true
+
+[dependencies]
+arbitrary = { version = "1.3.2", features = ["derive"] }
+libfuzzer-sys = "0.4"
+
+[dependencies.antichess-tb-sys]
+path = ".."
+
+[[bin]]
+name = "probe_dtw"
+path = "fuzz_targets/probe_dtw.rs"
+test = false
+doc = false
+bench = false
