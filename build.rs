@@ -39,27 +39,11 @@ fn main() {
             }
         })
         .define("HAVE_MMAP", None)
+        .include(env::var_os("DEP_Z_INCLUDE").expect("provided by libz-sys"))
         .include("antichess-tb-api/src/tb/egtb/dictzip")
         .file("antichess-tb-api/src/tb/egtb/dictzip/data.c")
         .file("antichess-tb-api/src/tb/egtb/dictzip/dictzip.c")
         .file("antichess-tb-api/src/tb/egtb/dictzip/dz.c")
-        // src/tb/egtb/dictzip/zlib
-        .include("antichess-tb-api/src/tb/egtb/dictzip/zlib")
-        .file("antichess-tb-api/src/tb/egtb/dictzip/zlib/adler32.c")
-        .file("antichess-tb-api/src/tb/egtb/dictzip/zlib/compress.c")
-        .file("antichess-tb-api/src/tb/egtb/dictzip/zlib/crc32.c")
-        .file("antichess-tb-api/src/tb/egtb/dictzip/zlib/deflate.c")
-        .file("antichess-tb-api/src/tb/egtb/dictzip/zlib/gzclose.c")
-        .file("antichess-tb-api/src/tb/egtb/dictzip/zlib/gzlib.c")
-        .file("antichess-tb-api/src/tb/egtb/dictzip/zlib/gzread.c")
-        .file("antichess-tb-api/src/tb/egtb/dictzip/zlib/gzwrite.c")
-        .file("antichess-tb-api/src/tb/egtb/dictzip/zlib/infback.c")
-        .file("antichess-tb-api/src/tb/egtb/dictzip/zlib/inffast.c")
-        .file("antichess-tb-api/src/tb/egtb/dictzip/zlib/inflate.c")
-        .file("antichess-tb-api/src/tb/egtb/dictzip/zlib/inftrees.c")
-        .file("antichess-tb-api/src/tb/egtb/dictzip/zlib/trees.c")
-        .file("antichess-tb-api/src/tb/egtb/dictzip/zlib/uncompr.c")
-        .file("antichess-tb-api/src/tb/egtb/dictzip/zlib/zutil.c")
         .compile("dictzip");
 
     cc::Build::new()
@@ -114,4 +98,6 @@ fn main() {
             .join("src")
             .display()
     );
+
+    println!("cargo::rustc-link-lib=static=z");
 }
