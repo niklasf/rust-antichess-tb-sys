@@ -11,7 +11,7 @@ keywords = ["chess", "antichess", "tablebase"]
 edition = "2021"
 
 [build-dependencies]
-bindgen = { version = "0.69.4", default-features = false, features = ["logging"] }
+bindgen = { version = "0.69.4", default-features = false, features = ["runtime"] }
 cc = "1.1.6"
 tap = "1.0.1"
 
