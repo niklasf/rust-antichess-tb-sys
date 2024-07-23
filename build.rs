@@ -26,7 +26,6 @@ fn main() {
 
     cc::Build::new()
         .std("gnu99")
-        .static_flag(true)
         .flag_if_supported("-Wno-sign-compare")
         .flag_if_supported("-Wno-discarded-qualifiers")
         .flag_if_supported("-Wno-unused-parameter")
@@ -50,7 +49,6 @@ fn main() {
     cc::Build::new()
         .cpp(true)
         .std("c++17")
-        .static_flag(true)
         .flag_if_supported("-Wno-unused-parameter")
         // src/tb
         .include("antichess-tb-api/src")
