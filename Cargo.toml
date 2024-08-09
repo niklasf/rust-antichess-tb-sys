@@ -8,6 +8,7 @@ readme = "README.md"
 license = "GPL-3.0+ AND GPL-2.0 AND Zlib"
 categories = ["external-ffi-bindings", "games"]
 keywords = ["chess", "antichess", "tablebase"]
+exclude = ["an0/*.an0"]
 edition = "2021"
 
 [build-dependencies]

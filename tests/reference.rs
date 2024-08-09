@@ -8,11 +8,8 @@ fn test_reference() {
     assert_eq!(unsafe { antichess_tb_init() }, 0, "init");
 
     let path = "an0";
-    assert_eq!(
-        unsafe { antichess_tb_add_path(path.as_ptr() as *const c_char, path.len()) },
-        0,
-        "add path"
-    );
+    let res = -unsafe { antichess_tb_add_path(path.as_ptr() as *const c_char, path.len()) };
+    println!("{res} missing tables");
 
     let tests = [
         ("7k/8/5K2/8/8/1R6/P7/8 w - - 0 1", 50, 0),
@@ -64,7 +61,6 @@ fn test_reference() {
                 &mut dtw,
             )
         };
-        assert_eq!(res, ref_res, "res for {}", fen);
-        assert_eq!(dtw, ref_dtw, "dtw for {}", fen);
+        assert_eq!((res, dtw), (ref_res, ref_dtw), "res, dtw for {}", fen);
     }
 }
