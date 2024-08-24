@@ -1,6 +1,6 @@
 [package]
 name = "antichess-tb-sys"
-version = "0.1.1" # remember to update html_root_url
+version = "0.1.2" # remember to update html_root_url
 links = "antichesstb"
 description = "Low level bindings for antichess-tb-api"
 repository = "https://github.com/niklasf/rust-antichess-tb-sys"
