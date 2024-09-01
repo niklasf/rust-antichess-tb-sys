@@ -12,7 +12,7 @@ exclude = ["an0/*.an0"]
 edition = "2021"
 
 [build-dependencies]
-bindgen = { version = "0.69.4", default-features = false, features = ["runtime"] }
+bindgen = { version = "0.70.1", default-features = false, features = ["runtime"] }
 cc = "1.1.6"
 tap = "1.0.1"
 
