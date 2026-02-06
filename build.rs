@@ -91,7 +91,7 @@ fn main() {
         .file("antichess-tb-api/src/tb/egtb/tb_idx.cpp")
         // src
         .file("antichess-tb-api/src/antichess_tb_api.cpp")
-        .compile("antichesstb");
+        .compile("antichess_tb");
 
     println!("cargo:root={}", out_dir.display());
     println!(
