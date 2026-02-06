@@ -4,20 +4,19 @@ version = "0.1.2" # remember to update html_root_url
 links = "antichesstb"
 description = "Low level bindings for antichess-tb-api"
 repository = "https://github.com/niklasf/rust-antichess-tb-sys"
-readme = "README.md"
 license = "GPL-3.0+ AND GPL-2.0 AND Zlib"
 categories = ["external-ffi-bindings", "games"]
 keywords = ["chess", "antichess", "tablebase"]
 exclude = ["an0/*.an0"]
-edition = "2021"
+edition = "2024"
 
 [build-dependencies]
-bindgen = { version = "0.69.4", default-features = false, features = ["runtime"] }
+bindgen = "0.72.1"
 cc = "1.1.6"
 tap = "1.0.1"
 
 [dev-dependencies]
-shakmaty = "0.27.1"
+shakmaty = "0.30.0"
 
 [dependencies]
 libz-sys = { version = "1.1.18", features = ["static"] }

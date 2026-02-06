@@ -1,7 +1,7 @@
 [package]
 name = "antichess-tb-sys-fuzz"
 publish = false
-edition = "2021"
+edition = "2024"
 
 [package.metadata]
 cargo-fuzz = true
