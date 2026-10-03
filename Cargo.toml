@@ -11,7 +11,7 @@ exclude = ["an0/*.an0"]
 edition = "2024"
 
 [build-dependencies]
-bindgen = "0.72.1"
+bindgen = "0.73.2"
 cc = "1.1.6"
 tap = "1.0.1"
 
